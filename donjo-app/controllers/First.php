@@ -1,4 +1,5 @@
 <?php
+
 /**
  * File ini:
  *
@@ -42,10 +43,11 @@
  * @link https://github.com/OpenSID/OpenSID
  */
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 require_once 'vendor/google-api-php-client/vendor/autoload.php';
 
-class First extends Web_Controller {
+class First extends Web_Controller
+{
 
 	public function __construct()
 	{
@@ -54,18 +56,14 @@ class First extends Web_Controller {
 
 		// Jika offline_mode dalam level yang menyembunyikan website,
 		// tidak perlu menampilkan halaman website
-		if ($this->setting->offline_mode == 2)
-		{
+		if ($this->setting->offline_mode == 2) {
 			redirect('main');
-		}
-		elseif ($this->setting->offline_mode == 1)
-		{
+		} elseif ($this->setting->offline_mode == 1) {
 			// Hanya tampilkan website jika user mempunyai akses ke menu admin/web
 			// Tampilkan 'maintenance mode' bagi pengunjung website
 			$this->load->model('user_model');
 			$grup	= $this->user_model->sesi_grup($_SESSION['sesi']);
-			if (!$this->user_model->hak_akses($grup, 'web', 'b'))
-			{
+			if (!$this->user_model->hak_akses($grup, 'web', 'b')) {
 				redirect('main/maintenance_mode');
 			}
 		}
@@ -110,7 +108,7 @@ class First extends Web_Controller {
 		$this->load->model('analisis_import_model');
 	}
 
-	public function index($p=1)
+	public function index($p = 1)
 	{
 		$data = $this->includes;
 
@@ -122,11 +120,11 @@ class First extends Web_Controller {
 		$data['end_paging'] = min($data['paging']->end_link, $p + $data['paging_range']);
 		$data['pages'] = range($data['start_paging'], $data['end_paging']);
 		$data['artikel'] = $this->first_artikel_m->artikel_show($data['paging']->offset, $data['paging']->per_page);
+		// $data['artikel'] = [];
 
 		$data['headline'] = $this->first_artikel_m->get_headline();
 		$data['cari'] = htmlentities($this->input->get('cari'));
-		if ($this->setting->covid_rss)
-		{
+		if ($this->setting->covid_rss) {
 			$data['feed'] = array(
 				'items' => $this->first_artikel_m->get_feed(),
 				'title' => 'BERITA COVID19.GO.ID',
@@ -134,8 +132,7 @@ class First extends Web_Controller {
 			);
 		}
 
-		if ($this->setting->apbdes_footer)
-		{
+		if ($this->setting->apbdes_footer) {
 			$data['transparansi'] = $this->setting->apbdes_manual_input
 				? $this->keuangan_grafik_manual_model->grafik_keuangan_tema()
 				: $this->keuangan_grafik_model->grafik_keuangan_tema();
@@ -144,10 +141,9 @@ class First extends Web_Controller {
 		$data['covid'] = $this->laporan_penduduk_model->list_data('covid');
 
 		$cari = trim($this->input->get('cari'));
-		if ( ! empty($cari))
-		{
+		if (! empty($cari)) {
 			// Judul artikel bisa digunakan untuk serangan XSS
-			$data["judul_kategori"] = htmlentities("Hasil pencarian : ". substr($cari, 0, 50));
+			$data["judul_kategori"] = htmlentities("Hasil pencarian : " . substr($cari, 0, 50));
 		}
 
 		$this->_get_common_data($data);
@@ -161,13 +157,11 @@ class First extends Web_Controller {
 	*/
 	public function artikel($url)
 	{
-		if (is_numeric($url))
-		{
+		if (is_numeric($url)) {
 			$data_artikel = $this->first_artikel_m->get_artikel_by_id($url);
-			if ($data_artikel)
-			{
+			if ($data_artikel) {
 				$data_artikel['slug'] = $this->security->xss_clean($data_artikel['slug']);
-				redirect('artikel/'. buat_slug($data_artikel));
+				redirect('artikel/' . buat_slug($data_artikel));
 			}
 		}
 		$this->load->model('shortcode_model');
@@ -179,19 +173,19 @@ class First extends Web_Controller {
 		// replace isi artikel dengan shortcodify
 		$data['single_artikel']['isi'] = $this->shortcode_model->shortcode($data['single_artikel']['isi']);
 		$data['title'] = ucwords($data['single_artikel']['judul']);
-		$data['detail_agenda'] = $this->first_artikel_m->get_agenda($id);//Agenda
+		$data['detail_agenda'] = $this->first_artikel_m->get_agenda($id); //Agenda
 		$data['komentar'] = $this->first_artikel_m->list_komentar($id);
 		$this->_get_common_data($data);
 		$this->set_template('layouts/artikel.tpl.php');
 		$this->load->view($this->template, $data);
 	}
 
-	public function arsip($p=1)
+	public function arsip($p = 1)
 	{
 		$data = $this->includes;
 		$data['p'] = $p;
 		$data['paging'] = $this->first_artikel_m->paging_arsip($p);
-		$data['farsip'] = $this->first_artikel_m->full_arsip($data['paging']->offset,$data['paging']->per_page);
+		$data['farsip'] = $this->first_artikel_m->full_arsip($data['paging']->offset, $data['paging']->per_page);
 
 		$this->_get_common_data($data);
 
@@ -200,7 +194,7 @@ class First extends Web_Controller {
 	}
 
 	// Halaman arsip album galeri
-	public function gallery($p=1)
+	public function gallery($p = 1)
 	{
 		$data = $this->includes;
 		$data['p'] = $p;
@@ -218,7 +212,7 @@ class First extends Web_Controller {
 	}
 
 	// halaman rincian tiap album galeri
-	public function sub_gallery($gal=0, $p=1)
+	public function sub_gallery($gal = 0, $p = 1)
 	{
 		$data = $this->includes;
 		$data['p'] = $p;
@@ -229,7 +223,7 @@ class First extends Web_Controller {
 		$data['end_paging'] = min($data['paging']->end_link, $p + $data['paging_range']);
 		$data['pages'] = range($data['start_paging'], $data['end_paging']);
 
-		$data['gallery'] = $this->first_gallery_m->sub_gallery_show($gal,$data['paging']->offset, $data['paging']->per_page);
+		$data['gallery'] = $this->first_gallery_m->sub_gallery_show($gal, $data['paging']->offset, $data['paging']->per_page);
 		$data['parrent'] = $this->first_gallery_m->get_parrent($gal);
 		$data['mode'] = 1;
 
@@ -239,14 +233,14 @@ class First extends Web_Controller {
 		$this->load->view($this->template, $data);
 	}
 
-	public function statistik($stat=0, $tipe=0)
+	public function statistik($stat = 0, $tipe = 0)
 	{
-		if (!$this->web_menu_model->menu_aktif('statistik/'.$stat)) show_404();
+		if (!$this->web_menu_model->menu_aktif('statistik/' . $stat)) show_404();
 
 		$data = $this->includes;
 
 		$data['heading'] = $this->laporan_penduduk_model->judul_statistik($stat);
-		$data['title'] = 'Statistik '. $data['heading'];
+		$data['title'] = 'Statistik ' . $data['heading'];
 		$data['stat'] = $this->laporan_penduduk_model->list_data($stat);
 		$data['tipe'] = $tipe;
 		$data['st'] = $stat;
@@ -259,14 +253,14 @@ class First extends Web_Controller {
 
 	public function kelompok($id)
 	{
-		if ( ! $this->web_menu_model->menu_aktif('data-kelompok/' . $id)) show_404();
+		if (! $this->web_menu_model->menu_aktif('data-kelompok/' . $id)) show_404();
 
 		$data = $this->includes;
 
 		$data['detail'] = $this->kelompok_model->get_kelompok($id);
-		$data['title'] = 'Data Kelompok '. $data['detail']['nama'];
+		$data['title'] = 'Data Kelompok ' . $data['detail']['nama'];
 		$data['pengurus'] = $this->kelompok_model->list_pengurus($id);
-		$data['anggota'] = $this->kelompok_model->list_anggota($id, $sub='anggota');
+		$data['anggota'] = $this->kelompok_model->list_anggota($id, $sub = 'anggota');
 
 		// Jika kelompok tdk tersedia / sudah terhapus pd modul kelompok
 		if ($data['detail'] == NULL) show_404();
@@ -278,13 +272,13 @@ class First extends Web_Controller {
 
 	public function suplemen($id = 0)
 	{
-		if ( ! $this->web_menu_model->menu_aktif('data-suplemen/' . $id)) show_404();
+		if (! $this->web_menu_model->menu_aktif('data-suplemen/' . $id)) show_404();
 
 		$this->session->per_page = null;
 		$data = $this->includes;
 
 		$data['main'] = $this->suplemen_model->get_rincian(1, $id);
-		$data['title'] = 'Data Suplemen '. $data['main']['suplemen']['nama'];
+		$data['title'] = 'Data Suplemen ' . $data['main']['suplemen']['nama'];
 		$data['sasaran'] = unserialize(SASARAN);
 
 		$this->_get_common_data($data);
@@ -298,8 +292,7 @@ class First extends Web_Controller {
 		$data = array();
 		$no = $_POST['start'];
 
-		foreach ($peserta as $baris)
-		{
+		foreach ($peserta as $baris) {
 			$no++;
 			$row = array();
 			$row[] = $no;
@@ -317,20 +310,17 @@ class First extends Web_Controller {
 		echo json_encode($output);
 	}
 
-	public function data_analisis($stat="", $sb=0, $per=0)
+	public function data_analisis($stat = "", $sb = 0, $per = 0)
 	{
 		if (!$this->web_menu_model->menu_aktif('data_analisis')) show_404();
 
 		$data = $this->includes;
 
-		if ($stat == "")
-		{
+		if ($stat == "") {
 			$data['list_indikator'] = $this->first_penduduk_m->list_indikator();
 			$data['list_jawab'] = null;
 			$data['indikator'] = null;
-		}
-		else
-		{
+		} else {
 			$data['list_indikator'] = "";
 			$data['list_jawab'] = $this->first_penduduk_m->list_jawab($stat, $sb, $per);
 			$data['indikator'] = $this->first_penduduk_m->get_indikator($stat);
@@ -424,7 +414,7 @@ class First extends Web_Controller {
 
 		$data['kategori'] = $this->referensi_model->list_data('ref_dokumen', 1);
 		$data['tahun'] = $this->web_dokumen_model->tahun_dokumen();
-		$data['heading'] ="Informasi Publik";
+		$data['heading'] = "Informasi Publik";
 		$data['title'] = $data['heading'];
 		$data['halaman_statis'] = 'web/halaman_statis/informasi_publik';
 		$this->_get_common_data($data);
@@ -439,12 +429,11 @@ class First extends Web_Controller {
 		$data = array();
 		$no = $_POST['start'];
 
-		foreach ($informasi_publik as $baris)
-		{
+		foreach ($informasi_publik as $baris) {
 			$no++;
 			$row = array();
 			$row[] = $no;
-			$row[] = "<a href='".site_url('dokumen_web/unduh_berkas/').$baris['id']."' target='_blank'>".$baris['nama']."</a>";
+			$row[] = "<a href='" . site_url('dokumen_web/unduh_berkas/') . $baris['id'] . "' target='_blank'>" . $baris['nama'] . "</a>";
 			$row[] = $baris['tahun'];
 			// Ambil judul kategori
 			$row[] = $this->referensi_model->list_ref_flip(KATEGORI_PUBLIK)[$baris['kategori_info_publik']];
@@ -487,23 +476,19 @@ class First extends Web_Controller {
 		$this->form_validation->set_rules('no_hp', 'No HP', 'numeric|required');
 		$this->form_validation->set_rules('email', 'Email', 'valid_email');
 
-		if ($this->form_validation->run() == TRUE)
-		{
+		if ($this->form_validation->run() == TRUE) {
 			// Periksa isian captcha
 			include FCPATH . 'securimage/securimage.php';
 			$securimage = new Securimage();
 
 			$post = $this->input->post();
-			if ($securimage->check($_POST['captcha_code']) == false)
-			{
+			if ($securimage->check($_POST['captcha_code']) == false) {
 				$respon = [
 					'status' => -1, // Notif gagal
 					'pesan' => 'Kode anda salah. Silakan ulangi lagi.',
 					'data' => $post
 				];
-			}
-			else
-			{
+			} else {
 				$data = [
 					'komentar' => htmlentities($post['komentar']),
 					'owner' => htmlentities($post['owner']),
@@ -515,15 +500,12 @@ class First extends Web_Controller {
 
 				$res = $this->first_artikel_m->insert_comment($data);
 
-				if ($res)
-				{
+				if ($res) {
 					$respon = [
 						'status' => 1, // Notif berhasil
 						'pesan' => 'Komentar anda telah berhasil dikirim dan perlu dimoderasi untuk ditampilkan.'
 					];
-				}
-				else
-				{
+				} else {
 					$respon = [
 						'status' => -1, // Notif gagal
 						'pesan' => 'Komentar anda gagal dikirim. Silakan ulangi lagi.',
@@ -531,9 +513,7 @@ class First extends Web_Controller {
 					];
 				}
 			}
-		}
-		else
-		{
+		} else {
 			$respon = [
 				'status' => -1, // Notif gagal
 				'pesan' => validation_errors(),
@@ -567,8 +547,7 @@ class First extends Web_Controller {
 
 		$this->web_widget_model->get_widget_data($data);
 		$data['data_config'] = $this->config_model->get_data();
-		if ($this->setting->apbdes_footer AND $this->setting->apbdes_footer_all)
-		{
+		if ($this->setting->apbdes_footer and $this->setting->apbdes_footer_all) {
 			$data['transparansi'] = $this->setting->apbdes_manual_input
 				? $this->keuangan_grafik_manual_model->grafik_keuangan_tema()
 				: $this->keuangan_grafik_model->grafik_keuangan_tema();
@@ -579,8 +558,7 @@ class First extends Web_Controller {
 			'arsip',
 			'w_cos'
 		);
-		foreach ($list_kolom as $kolom)
-		{
+		foreach ($list_kolom as $kolom) {
 			$data[$kolom] = $this->security->xss_clean($data[$kolom]);
 		}
 	}
@@ -629,12 +607,11 @@ class First extends Web_Controller {
 		$this->load->view('gis/aparatur_desa_web', $data);
 	}
 
-	public function load_aparatur_wilayah($id='', $kd_jabatan=0)
+	public function load_aparatur_wilayah($id = '', $kd_jabatan = 0)
 	{
 		$data['penduduk'] = $this->penduduk_model->get_penduduk($id);
 
-		switch ($kd_jabatan)
-		{
+		switch ($kd_jabatan) {
 			case '1':
 				$data['jabatan'] = "Kepala Dusun";
 				break;
@@ -654,29 +631,26 @@ class First extends Web_Controller {
 
 	public function ambil_data_covid()
 	{
-		if ($content = getUrlContent($this->input->post('endpoint')))
-		{
+		if ($content = getUrlContent($this->input->post('endpoint'))) {
 			echo $content;
 		}
 	}
 
 	public function status_idm(int $tahun)
 	{
-		if ( ! $this->web_menu_model->menu_aktif('status-idm/' . $tahun)) show_404();
+		if (! $this->web_menu_model->menu_aktif('status-idm/' . $tahun)) show_404();
 
 		$data = $this->includes;
 		$this->load->library('data_publik');
 		$this->_get_common_data($data);
 		$kode_desa = $data['desa']['kode_desa'];
-		if ($this->data_publik->has_internet_connection())
-		{
+		if ($this->data_publik->has_internet_connection()) {
 			$this->data_publik->set_api_url("https://idm.kemendesa.go.id/open/api/desa/rumusan/$kode_desa/$tahun", 'idm_' . $tahun . '_' . $kode_desa)
 				->set_interval(7)
 				->set_cache_folder(FCPATH . 'cache');
 
 			$idm = $this->data_publik->get_url_content();
-			if ($idm->body->error)
-			{
+			if ($idm->body->error) {
 				$idm->body->mapData->error_msg = $idm->body->message . " : " . $idm->header->url . "<br><br>" . "Periksa Kode Desa di Identitas Desa. Masukkan kode lengkap, contoh '3507012006'<br>";
 			}
 			$data['idm'] = $idm->body->mapData;
@@ -700,16 +674,13 @@ class First extends Web_Controller {
 		$this->load->view('pembangunan/informasi', $data);
 	}
 
-	public function redirect( $alias )
+	public function redirect($alias)
 	{
 		$url_data = $this->url_shortener_model->get_url($alias);
-		if ( ! $url_data)
-		{
+		if (! $url_data) {
 			header("HTTP/1.0 404 Not Found");
 			$this->load->view('not_found');
-		}
-		else
-		{
+		} else {
 			$this->stat_shortener_model->add_log($url_data->id);
 			header('Location: ' . $url_data->url, true, 302);
 			exit();
@@ -724,8 +695,8 @@ class First extends Web_Controller {
 		$data = $this->includes;
 		$this->_get_common_data($data);
 		$kode_desa = $data['desa']['kode_desa'];
-		$data ['evaluasi'] = $this->data_eksternal_model->sdgs_kemendes($kode_desa);
-		$data['halaman_statis'] = '../../' . $this->theme_folder . '/'. $this->theme . '/partials/kemendes_sdgs.php';
+		$data['evaluasi'] = $this->data_eksternal_model->sdgs_kemendes($kode_desa);
+		$data['halaman_statis'] = '../../' . $this->theme_folder . '/' . $this->theme . '/partials/kemendes_sdgs.php';
 		$this->set_template('layouts/halaman_statis_lebar.tpl.php');
 		$this->load->view($this->template, $data);
 	}
@@ -734,20 +705,16 @@ class First extends Web_Controller {
 	{
 		$redirect_link = $this->input->get('redirectLink');
 
-		if ($this->session->inside_retry == false)
-		{
+		if ($this->session->inside_retry == false) {
 			// Untuk kondisi SEBELUM autentikasi dan SETELAH RETRY hit API
-			if ($this->input->get('outsideRetry') == 'true')
-			{
+			if ($this->input->get('outsideRetry') == 'true') {
 				$this->session->inside_retry = true;
 			}
 			$this->session->google_form_id = $this->input->get('formId');
 			$result = $this->analisis_import_model->import_gform($redirect_link);
 
 			echo json_encode($result);
-		}
-		else
-		{
+		} else {
 			// Untuk kondisi SESAAT setelah Autentikasi
 			$redirect_link = $this->session->inside_redirect_link;
 
@@ -778,5 +745,4 @@ class First extends Web_Controller {
 		$this->set_template('layouts/halaman_statis_lebar.tpl.php');
 		$this->load->view($this->template, $data);
 	}
-
 }

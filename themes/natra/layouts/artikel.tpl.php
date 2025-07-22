@@ -16,10 +16,10 @@
 	<div class="container" style="background-color: #f6f6f6;">
 		<header id="header">
 			<?php $this->load->view("$folder_themes/partials/header.php"); ?>
+			<div id="navarea">
+				<?php $this->load->view("$folder_themes/partials/menu_head.php"); ?>
+			</div>
 		</header>
-		<div id="navarea">
-			<?php $this->load->view("$folder_themes/partials/menu_head.php"); ?>
-		</div>
 		<div class="row">
 			<section>
 				<div class="content_middle"></div>

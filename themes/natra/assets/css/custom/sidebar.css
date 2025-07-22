@@ -1,0 +1,168 @@
+#menu-sidebar {
+  background-color: #fff;
+  box-shadow: var(--shadow-lg);
+  /* border-radius: var(--rounded-xl); */
+  overflow: hidden;
+  transition: all 300ms;
+}
+
+#menu-sidebar:hover {
+  transform: translateY(-6px);
+  transition: all 300ms;
+}
+
+#menu-sidebar h2 {
+  background: var(--main-gradient);
+  padding: 1rem;
+  margin: 0;
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+#menu-sidebar h2::after {
+  display: none;
+}
+
+/* ===================== Category ========================*/
+
+#menu-sidebar #ul-menu-category {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#menu-sidebar #ul-menu-category li a {
+  color: #000;
+}
+
+#menu-sidebar #ul-menu-category li {
+  /* background-color: #e6494649; */
+  padding: 0.5rem 1rem;
+  border-radius: var(--rounded-xl);
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+#menu-sidebar #ul-menu-category li a {
+  padding: 0rem 0;
+  border-radius: var(--rounded-xl);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#menu-sidebar #ul-menu-category li a::before {
+  display: none;
+}
+
+#menu-sidebar #ul-menu-category li:hover {
+  background-color: #e6494649;
+  transition: all 300ms;
+}
+
+#menu-sidebar #ul-menu-category li:hover a {
+  color: #e64946;
+}
+
+#menu-sidebar #ul-menu-category li svg {
+  transition: all 300ms;
+}
+
+#menu-sidebar #ul-menu-category li:hover svg {
+  transform: translateX(4px);
+  transition: all 300ms;
+}
+
+/* ===================== Arsip Artikel ========================*/
+
+#menu-sidebar #ul-menu-arsip {
+  background: var(--main-gradient);
+}
+
+#menu-sidebar #ul-menu-arsip li.active a {
+  background-color: #fff;
+}
+
+#arsip-content .arsip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+#arsip-content .arsip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background-color: white;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--rounded-xl);
+  border: 1px solid var(--border-gray-transparent);
+  /* border-bottom: 1px solid #e5e7eb; */
+  transition: all 300ms;
+}
+
+#arsip-content .arsip-item:hover {
+  transform: translateX(6px);
+  transition: all 300ms;
+}
+
+#arsip-content .arsip-image img {
+  width: 90px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.375rem;
+  border: 1px solid #e5e7eb;
+}
+
+#arsip-content .arsip-content {
+  flex: 1;
+}
+
+#arsip-content .arsip-meta {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+#arsip-content .arsip-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #065f46;
+  line-height: 1.4;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#arsip-content .arsip-title:hover {
+  color: #059669;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Optional: tab-pane behavior (jaga konsistensi) */
+#arsip-content .tab-pane {
+  padding: 1rem 0;
+}
+
+#arsip-content .tab-pane:not(.active) {
+  display: none;
+}
+
+/* ===================== Agenda ========================*/
+#menu-sidebar #agenda .tab-content {
+  padding: 0 1rem;
+}
+#menu-sidebar #agenda .tab-content .judul {
+  /* border: 1px solid black; */
+  background: var(--main-gradient);
+}
+#menu-sidebar #agenda .tab-content .judul a {
+  color: white;
+}
