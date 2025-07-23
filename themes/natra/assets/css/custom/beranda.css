@@ -10,6 +10,7 @@
   padding: 20px;
   cursor: pointer;
   border: 1px solid var(--border-gray-transparent);
+  border-left: 3px solid var(--main-color);
   transition: all 300ms;
 }
 .artikel-card:hover {

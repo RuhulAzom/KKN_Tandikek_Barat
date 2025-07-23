@@ -104,6 +104,7 @@
   box-shadow: var(--shadow-lg);
   border-radius: var(--rounded-xl);
   border: 1px solid var(--border-gray-transparent);
+  border-left: 3px solid var(--main-color);
   /* border-bottom: 1px solid #e5e7eb; */
   transition: all 300ms;
 }
@@ -165,4 +166,43 @@
 }
 #menu-sidebar #agenda .tab-content .judul a {
   color: white;
+}
+/* ===================== Gallery ========================*/
+#menu-sidebar #gallery {
+  padding: 1rem;
+}
+
+#menu-sidebar #gallery h2 {
+  padding: 0;
+  background-color: transparent;
+  width: fit-content;
+  top: unset;
+  right: unset;
+  bottom: 5rem;
+  left: 2rem;
+}
+
+/* ===================== Aparatur Desa ========================*/
+
+#menu-sidebar #aparatur-desa {
+  padding: 1rem;
+}
+/* ===================== Commentar ========================*/
+
+#menu-sidebar #commentar {
+  padding: 1rem;
+}
+/* ===================== Peta Wilayah Desa ========================*/
+
+.peta-wilayah-desa .single_bottom_rightbar {
+  margin-bottom: 0;
+}
+
+#peta-wilayah-desa {
+  background-color: #fff;
+  padding: 1rem;
+}
+/* ===================== Lokasi Kantor ========================*/
+#menu-sidebar #lokasi-kantor {
+  padding: 1rem;
 }

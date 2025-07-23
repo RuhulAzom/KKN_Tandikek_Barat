@@ -38,6 +38,9 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/peta.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/bootstrap/css/dataTables.bootstrap.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url("$this->theme_folder/$this->theme/assets/css/custom/_core.css"); ?>">
+<link
+	href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap"
+	rel="stylesheet">
 
 <?php if (isset($single_artikel)): ?>
 	<meta property="og:title" content="<?= htmlspecialchars($single_artikel["judul"]); ?>" />
