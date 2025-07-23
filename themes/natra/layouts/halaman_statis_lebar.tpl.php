@@ -1,18 +1,19 @@
-<?php if(!defined('BASEPATH')) exit('No direct script access allowed'); ?>
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+
 <head>
 	<?php $this->load->view("$folder_themes/commons/meta.php"); ?>
 </head>
+
 <body>
 	<style type="text/css">
-	  .web .content-wrapper
-	  {
-		margin-left: 0px !important;
-	  }
+		.web .content-wrapper {
+			margin-left: 0px !important;
+		}
 	</style>
 	<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
-	<div class="container" style="background-color: #f6f6f6;">
+	<div class="container">
 		<header id="header">
 			<?php $this->load->view("$folder_themes/partials/header.php"); ?>
 		</header>
@@ -38,4 +39,5 @@
 	</footer>
 	<?php $this->load->view("$folder_themes/commons/meta_footer.php"); ?>
 </body>
+
 </html>

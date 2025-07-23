@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <div class="content_bottom_right" style="padding-top: 1rem;">
-	<div id="tanggal-jam" style="margin-bottom: 1rem;"></div>
+	<!-- <div id="tanggal-jam" style="margin-bottom: 1rem;"></div> -->
 	<?php
-	// $this->load->view($folder_themes . '/widgets/jam.php');
+	$this->load->view($folder_themes . '/widgets/jam.php');
 	?>
 
 	<!-- Tampilkan Widget -->

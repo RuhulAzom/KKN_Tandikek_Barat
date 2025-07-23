@@ -1,9 +1,42 @@
 #menu-sidebar {
-  background-color: #fff;
-  box-shadow: var(--shadow-lg);
-  /* border-radius: var(--rounded-xl); */
+  /* background-color: rgba(127, 29, 29, 0.2);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-lg); */
+  background: linear-gradient(
+    to right,
+    rgba(220, 38, 38, 0.2),
+    rgba(249, 115, 22, 0.2),
+    rgba(234, 179, 8, 0.2)
+  );
   overflow: hidden;
   transition: all 300ms;
+  border-radius: 1.5rem;
+  position: relative;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+#menu-sidebar .bg {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(30, 41, 59, 0.9),
+    rgba(51, 65, 85, 0.8),
+    rgba(30, 41, 59, 0.9)
+  );
+}
+
+#menu-sidebar .overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(220, 38, 38, 0.1),
+    rgba(249, 115, 22, 0.1),
+    rgba(234, 179, 8, 0.1)
+  );
 }
 
 #menu-sidebar:hover {
@@ -12,8 +45,15 @@
 }
 
 #menu-sidebar h2 {
-  background: var(--main-gradient);
-  padding: 1rem;
+  /* background: var(--main-gradient); */
+  background: linear-gradient(
+    to bottom right,
+    #0f172a 0%,
+    #7f1d1d 50%,
+    #0f172a 100%
+  );
+  position: relative;
+  padding: 1.5rem;
   margin: 0;
   color: #fff;
   border: none;
@@ -21,6 +61,18 @@
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
+}
+
+#menu-sidebar h2::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(220, 38, 38, 0.2),
+    rgba(249, 115, 22, 0.2),
+    rgba(234, 179, 8, 0.2)
+  );
 }
 
 #menu-sidebar h2::after {
@@ -54,6 +106,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  color: #ffffffcc;
 }
 
 #menu-sidebar #ul-menu-category li a::before {
@@ -81,11 +134,28 @@
 /* ===================== Arsip Artikel ========================*/
 
 #menu-sidebar #ul-menu-arsip {
-  background: var(--main-gradient);
+  /* background: var(--main-gradient); */
 }
 
 #menu-sidebar #ul-menu-arsip li.active a {
-  background-color: #fff;
+  /* background-color: #fff; */
+  background: linear-gradient(
+    to right,
+    rgba(220, 38, 38, 0.2),
+    rgba(249, 115, 22, 0.2),
+    rgba(234, 179, 8, 0.2)
+  );
+  border: 1px solid transparent;
+}
+
+#menu-sidebar #ul-menu-arsip li a:hover {
+  background: linear-gradient(
+    to right,
+    rgba(220, 38, 38, 0.2),
+    rgba(249, 115, 22, 0.2),
+    rgba(234, 179, 8, 0.2)
+  );
+  border: 1px solid transparent;
 }
 
 #arsip-content .arsip-list {
@@ -100,10 +170,16 @@
   align-items: flex-start;
   gap: 0.75rem;
   padding: 0.75rem;
-  background-color: white;
+  /* background-color: white; */
+  background: linear-gradient(
+    to right,
+    rgba(220, 38, 38, 0.2),
+    rgba(249, 115, 22, 0.2),
+    rgba(234, 179, 8, 0.2)
+  );
   box-shadow: var(--shadow-lg);
   border-radius: var(--rounded-xl);
-  border: 1px solid var(--border-gray-transparent);
+  border: 1px solid var(--main-color);
   border-left: 3px solid var(--main-color);
   /* border-bottom: 1px solid #e5e7eb; */
   transition: all 300ms;
@@ -135,7 +211,7 @@
 #arsip-content .arsip-title {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #065f46;
+  color: #ffffffcc;
   line-height: 1.4;
   text-decoration: none;
   display: inline-block;
@@ -164,7 +240,7 @@
   /* border: 1px solid black; */
   background: var(--main-gradient);
 }
-#menu-sidebar #agenda .tab-content .judul a {
+#menu-sidebar #agenda .tab-content {
   color: white;
 }
 /* ===================== Gallery ========================*/
@@ -194,13 +270,38 @@
 }
 /* ===================== Peta Wilayah Desa ========================*/
 
-.peta-wilayah-desa .single_bottom_rightbar {
+#peta-wilayah-desa-sidebar .single_bottom_rightbar {
   margin-bottom: 0;
 }
-
-#peta-wilayah-desa {
-  background-color: #fff;
+#peta-wilayah-desa-sidebar .header {
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-bottom: none;
+  padding: 1.5rem;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+}
+#peta-wilayah-desa-sidebar .header h2 {
+  padding: 0;
+  margin: 0;
+  border: none;
+  color: white;
+}
+#peta-wilayah-desa-sidebar .header h2::after {
+  display: none;
+}
+#peta-wilayah-desa-sidebar .content {
+  background: linear-gradient(
+    to right,
+    rgba(220, 38, 38, 0.2),
+    rgba(249, 115, 22, 0.2),
+    rgba(234, 179, 8, 0.2)
+  );
   padding: 1rem;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  position: relative;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-top: none;
 }
 /* ===================== Lokasi Kantor ========================*/
 #menu-sidebar #lokasi-kantor {

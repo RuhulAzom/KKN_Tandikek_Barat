@@ -2,6 +2,8 @@
 
 
 <div id="menu-sidebar" class="single_bottom_rightbar">
+	<!-- <div class="bg"></div>
+	<div class="overlay"></div> -->
 	<h2>
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="" style="width: 1.25rem;">
 			<path d="M3 3v18h18"></path>

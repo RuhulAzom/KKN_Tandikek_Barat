@@ -1,25 +1,6 @@
 <!-- widget Statistik Penduduk -->
 
 <style>
-	#menu-sidebar {
-		background-color: #fff;
-		box-shadow: var(--shadow-lg);
-		/* border-radius: var(--rounded-xl); */
-		overflow: hidden;
-	}
-
-	#menu-sidebar h2 {
-		background: var(--main-gradient);
-		padding: 1rem;
-		margin: 0;
-		color: #fff;
-		border: none;
-		display: flex;
-		align-items: center;
-		gap: .5rem;
-		font-weight: 600;
-	}
-
 	#menu-sidebar h2 a:hover {
 		color: #d1d1d1;
 	}

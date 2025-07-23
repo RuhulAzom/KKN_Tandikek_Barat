@@ -1,18 +1,12 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed'); ?>
 
-<?php
-$komentar_result = $this->db->query("SELECT * FROM komentar WHERE id_artikel = '" . $single_artikel['id'] . "'");
-$komentar_list = $komentar_result->result_array(); // hasil dalam array asosiatif
-?>
-
 <?php if ($single_artikel["id"]) : ?>
 
 	<script>
 		console.log("123123")
 		const awdwad = <?= json_encode($single_artikel) ?>;
-		// const komen = <?= json_encode($this->db->query("SELECT * FROM komentar WHERE id_artikel = '" . $single_artikel['id'] . "'")) ?>;
-		const komen = <?= json_encode($komentar_list, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) ?>;
 
+		const komen = <?= json_encode($komentar) ?>;
 		console.log({
 			awdwad,
 			komen
@@ -120,18 +114,18 @@ $komentar_list = $komentar_result->result_array(); // hasil dalam array asosiati
 			</div>
 		</div>
 		<div class="form-group group-komentar" id="kolom-komentar">
-			<div class="header bg-gradient-main">
-				<h2>
-					<span class="icon-secondary" style="flex-shrink: 0;">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle w-5 h-5">
-							<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
-						</svg>
-					</span>
-					Kirim Komentar
-				</h2>
-			</div>
-			<div class="content">
-				<?php if ($single_artikel['boleh_komentar'] == 1): ?>
+			<?php if ($single_artikel['boleh_komentar'] == 1): ?>
+				<div class="header bg-gradient-main">
+					<h2>
+						<span class="icon-secondary" style="flex-shrink: 0;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle w-5 h-5">
+								<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+							</svg>
+						</span>
+						Kirim Komentar
+					</h2>
+				</div>
+				<div class="content">
 					<div class="box box-default">
 						<!-- <div class="box-header">
 							<h2 class="box-title">Kirim Komentar</h2>
@@ -203,32 +197,17 @@ $komentar_list = $komentar_result->result_array(); // hasil dalam array asosiati
 							</form>
 						</div>
 					</div>
-				<?php endif; ?>
-				<?php if (!empty($komentar_list)): ?>
-					<div class="list-komentar">
-						<?php foreach ($komentar_list as $data): ?>
-							<div class="list-komentar-item">
-								<div class="imgBorder">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-										<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-										<circle cx="12" cy="7" r="4"></circle>
-									</svg>
-								</div>
-								<div class="komentar-detail">
-									<div class="komentar-title">
-										<p class="user">
-											<?= $data['owner'] ?>
-										</p>
-										<span class="date">
-											<?= tgl_indo2($data['tgl_upload']) ?>
-										</span>
-									</div>
-									<div class="desc">
-										<?= $data['komentar'] ?>
-									</div>
-								</div>
-							</div>
-							<!-- <table class="table table-bordered table-striped dataTable table-hover">
+				</div>
+			<?php else: ?>
+				<span class='info'></span>
+			<?php endif; ?>
+		</div>
+		<div class="contact_bottom">
+			<?php if (!empty($komentar)): ?>
+				<div class="contact_bottom">
+					<div class="box-body">
+						<?php foreach ($komentar as $data): ?>
+							<table class="table table-bordered table-striped dataTable table-hover">
 								<thead class="bg-gray disabled color-palette">
 									<tr>
 										<th><i class="fa fa-comment"></i> <?= $data['owner'] ?></th>
@@ -241,31 +220,11 @@ $komentar_list = $komentar_result->result_array(); // hasil dalam array asosiati
 										</td>
 									</tr>
 								</tbody>
-							</table> -->
+							</table>
 						<?php endforeach; ?>
 					</div>
-					<!-- <div class="contact_bottom">
-						<div class="box-body">
-							<?php foreach ($komentar_list as $data): ?>
-								<table class="table table-bordered table-striped dataTable table-hover">
-									<thead class="bg-gray disabled color-palette">
-										<tr>
-											<th><i class="fa fa-comment"></i> <?= $data['owner'] ?></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<font color='green'><small><?= tgl_indo2($data['tgl_upload']) ?></small></font><br /><?= $data['komentar'] ?>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							<?php endforeach; ?>
-						</div>
-					</div> -->
-				<?php endif; ?>
-			</div>
+				</div>
+			<?php endif; ?>
 		</div>
 	</div>
 

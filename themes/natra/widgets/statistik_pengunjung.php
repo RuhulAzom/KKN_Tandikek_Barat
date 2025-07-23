@@ -3,7 +3,7 @@
 <div class="archive_style_1">
 	<div id="menu-sidebar" class="single_bottom_rightbar">
 		<h2 class="box-title"><i class="fa fa-bar-chart-o"></i> Statistik Pengunjung</h2>
-		<div class="data-case-container">
+		<div class="data-case-container" style="padding: 1rem;">
 			<ul class="ants-right-headline">
 				<li class="info-case">
 					<table style="width: 100%;" cellpadding="0" cellspacing="0" class="table table-striped table-inverse counter">

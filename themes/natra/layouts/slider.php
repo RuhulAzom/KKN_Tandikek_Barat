@@ -63,7 +63,10 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: #ffffff;
+		/* background-color: #ffffff; */
+		background: rgba(127, 29, 29, 0.2);
+		backdrop-filter: blur(12px);
+		border: 1px solid rgba(239, 68, 68, 0.3);
 	}
 
 	#slider .header_slider {
@@ -88,6 +91,7 @@
 
 	#slider .slick_slider .content {
 		position: absolute;
+		z-index: 10;
 		padding-top: 2rem;
 		top: 0;
 		left: 0;
@@ -96,11 +100,32 @@
 		padding: 2rem 15px 15px 15px;
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+		/* background: rgba(127, 29, 29, 0.2);
+		backdrop-filter: blur(12px);
+		border: 1px solid rgba(239, 68, 68, 0.3); */
+		background: linear-gradient(to right,
+				rgba(220, 38, 38, 0.2),
+				rgba(249, 115, 22, 0.2),
+				rgba(234, 179, 8, 0.2));
 	}
+
 
 	#slider .slick_slider .content .imgBorder {
 		/* border: 1px #000 solid; */
 		padding: 0 2rem;
+		position: relative;
+		z-index: 10;
+	}
+
+	@media (max-width: 768px) {
+		#slider .slick_slider .content .imgBorder {
+			display: none;
+		}
+
+		#slider .slick_slider .content {
+			grid-template-columns: repeat(1, minmax(0, 1fr));
+			padding-left: 3rem;
+		}
 	}
 
 	#slider .slick_slider .content .imgBorder img {
@@ -113,8 +138,11 @@
 		display: flex;
 		flex-direction: column;
 		/* justify-content: space-between; */
-		background-color: rgba(255, 255, 255, 0.9);
+		/* background-color: rgba(255, 255, 255, 0.9); */
+		background-color: transparent;
 		box-sizing: border-box;
+		position: relative;
+		z-index: 10;
 	}
 
 	#slider .slick_slider .content .meta {
@@ -137,7 +165,7 @@
 	#slider .slick_slider .content h3 {
 		font-size: 18px;
 		font-weight: bold;
-		color: #333;
+		color: #fff;
 		margin: 0 0 10px 0;
 		line-height: 1.3;
 		max-height: 3em;
@@ -147,7 +175,7 @@
 
 	#slider .slick_slider .content .artikel-desc {
 		font-size: 14px;
-		color: #555;
+		color: #ffffffcc;
 		line-height: 1.4em;
 		max-height: 4.2em;
 		overflow: hidden;
@@ -168,6 +196,7 @@
 
 	#slider .slick_slider .content .footer .info span {
 		margin-right: 15px;
+		color: #ffffff99;
 	}
 
 	#slider .slick_slider .content .footer a {
@@ -184,17 +213,38 @@
 		/* background-color: #c0392b; */
 		opacity: .9;
 	}
+
+	.tlClogo-Container {
+		position: relative;
+		z-index: -1;
+	}
+
+	.tlClogo-Container::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to bottom right, #0f172a, #1e293b, #0f172a);
+	}
+
+	#slider .slick_slider .content .detail .btn-primary {
+		background: linear-gradient(to right, #ef4444, #f97316);
+		color: white;
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+		border-radius: 2rem;
+	}
 </style>
 <div id="slider" class="card">
 	<div class="header_slider bg-gradient-main ">
 		<h2 class="text-2xl font-bold flex items-center gap-3">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-6 h-6">
-				<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
-				<path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
-				<path d="M10 9H8"></path>
-				<path d="M16 13H8"></path>
-				<path d="M16 17H8"></path>
-			</svg>
+			<span class="icon-secondary" style="flex-shrink: 0;">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-6 h-6">
+					<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+					<path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+					<path d="M10 9H8"></path>
+					<path d="M16 13H8"></path>
+					<path d="M16 17H8"></path>
+				</svg>
+			</span>
 			ARTIKEL TERBARU
 		</h2>
 		<p class="text-red-100 mt-2">Informasi terkini dari Desa Tandikek Barat</p>
@@ -215,8 +265,8 @@
 						<div class="detail">
 							<div>
 								<div class="meta">
-									<span><?= $gambar['kategori'] ?></span>
-									<span><?= date('d F Y', strtotime($gambar['tgl_upload'])) ?></span>
+									<span class="btn-primary"><?= $gambar['kategori'] ?></span>
+									<span style="border: 1px solid rgba(239, 68, 68, 0.2); background: rgba(127, 29, 29, 0.3); color: rgba(255, 255, 255, 0.6); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem;font-weight: 500;border-radius: 2rem;"><?= date('d F Y', strtotime($gambar['tgl_upload'])) ?></span>
 								</div>
 								<h3><?= $gambar['judul'] ?></h3>
 								<div class="artikel-desc"><?= potong_teks($gambar["isi"], 180) ?>...</div>
@@ -231,11 +281,14 @@
 																				echo number_format($komentarku, 0, ',', '.'); ?> Komentar</span>
 									<?php endif; ?>
 								</div>
-								<a class="bg-gradient-main " href="<?= site_url('artikel/' . buat_slug($gambar)) ?>">Baca Selengkapnya <i class="bx bx-right-arrow-alt"></i></a>
+								<a class="btn-primary" href="<?= site_url('artikel/' . buat_slug($gambar)) ?>">Baca Selengkapnya <i class="bx bx-right-arrow-alt"></i></a>
 							</div>
 						</div>
 					</div>
-					<img class="tlClogo" src="<?php echo base_url() . "desa/upload/artikel/"  . 'sedang_' . $gambar['gambar'] ?>">
+					<div class="tlClogo-Container">
+						<img class="tlClogo" src="<?php echo base_url() . "desa/upload/artikel/"  . 'sedang_' . $gambar['gambar'] ?>">
+					</div>
+
 					<div style="display: none;" class="<?php if ($gambar['judul']): ?>textgambar <?php endif; ?>hidden-xs">
 						<?= $gambar['judul'] ?>
 					</div>

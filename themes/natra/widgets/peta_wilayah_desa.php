@@ -1,12 +1,12 @@
 <!-- widget Peta Wilayah Desa -->
-<div class="peta-wilayah-desa">
-	<div id="menu-sidebar" class="single_bottom_rightbar">
+<div id="peta-wilayah-desa-sidebar">
+	<div class="single_bottom_rightbar header bg-gradient-main">
 		<h2>
 			<i class="fa fa-map-marker"></i>
 			<?= "Wilayah " . ucwords($this->setting->sebutan_desa) ?>
 		</h2>
 	</div>
-	<div id="peta-wilayah-desa" class="single_bottom_rightbar">
+	<div class="single_bottom_rightbar content">
 		<div id="map_wilayah" style="height:200px;"></div>
 		<a href="https://www.openstreetmap.org/#map=15/<?= $data_config['lat'] . "/" . $data_config['lng'] ?>" class="btn btn-primary btn-block" rel="noopener noreferrer" target="_blank">Buka Peta</a>
 	</div>

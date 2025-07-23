@@ -57,14 +57,16 @@
     <!-- <div class="single_category wow fadeInDown" style="margin-bottom: 2rem;">
         <h2> <span class="bold_line"><span></span></span> <span class="solid_line"></span> <span class="title_text"><?= $title ?></span> </h2>
     </div> -->
-    <h1 style="color: #1f2937; font-size: 1.5rem; font-weight: 800; display: flex; gap: .5rem; padding: 2rem 0; margin: 0;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-6 h-6" style="color: #e64946;">
-            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
-            <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
-            <path d="M10 9H8"></path>
-            <path d="M16 13H8"></path>
-            <path d="M16 17H8"></path>
-        </svg>
+    <h1 style="color: #FFF; font-size: 1.5rem; font-weight: 800; display: flex; gap: .5rem; padding: 2rem 0; margin: 0;align-items: center;">
+        <span class="icon-primary ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-6 h-6" style="color: #e64946;">
+                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path>
+                <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                <path d="M10 9H8"></path>
+                <path d="M16 13H8"></path>
+                <path d="M16 17H8"></path>
+            </svg>
+        </span>
         <?= $title ?>
     </h1>
     <?php if ($artikel): ?>
@@ -129,6 +131,14 @@
                             <div class="artikel-meta">
                                 <span><i class="bx bx-calendar"></i><?= date('d F Y', strtotime($data['tgl_upload'])) ?></span>
                                 <span><i class="bx bx-show"></i> <?= $data['hit'] ?></span>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+                                    </svg>
+                                    <?php $baca_komentar = $this->db->query("SELECT * FROM komentar WHERE id_artikel = '" . $data['id'] . "'");
+                                    $komentarku = $baca_komentar->num_rows();
+                                    echo number_format($komentarku, 0, ',', '.'); ?>
+                                </span>
                                 <span><i class="bx bx-user"></i> <?= $data['owner'] ?></span>
                             </div>
 

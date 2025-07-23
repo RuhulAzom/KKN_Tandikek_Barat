@@ -112,7 +112,7 @@
     }
 
     /* Main Content */
-    .main-content {
+    .clock-container .main-content {
         position: relative;
         z-index: 10;
         padding: 40px;
@@ -595,7 +595,7 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
-        .main-content {
+        .clock-container .main-content {
             padding: 20px;
         }
 
@@ -642,6 +642,7 @@
 
     /* Loading Animation */
     .loading {
+        border: none;
         display: none;
     }
 

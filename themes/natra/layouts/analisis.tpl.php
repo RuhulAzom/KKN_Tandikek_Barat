@@ -9,7 +9,7 @@
 
 <body>
 	<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
-	<div class="container" style="background-color: #f6f6f6;">
+	<div class="container">
 		<header id="header">
 			<?php $this->load->view("$folder_themes/partials/header.php"); ?>
 		</header>

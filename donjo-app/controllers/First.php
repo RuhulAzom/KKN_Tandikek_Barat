@@ -175,6 +175,7 @@ class First extends Web_Controller
 		$data['title'] = ucwords($data['single_artikel']['judul']);
 		$data['detail_agenda'] = $this->first_artikel_m->get_agenda($id); //Agenda
 		$data['komentar'] = $this->first_artikel_m->list_komentar($id);
+		// $data['komentar'] = ["awdwad"];
 		$this->_get_common_data($data);
 		$this->set_template('layouts/artikel.tpl.php');
 		$this->load->view($this->template, $data);

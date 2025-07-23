@@ -16,12 +16,13 @@
 -->
 
     <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
-    <div class="container" style="background: linear-gradient(to bottom right, #f8fafc, #eff6ff);">
+    <div class="container">
         <header id="header">
             <?php $this->load->view("$folder_themes/partials/header.php"); ?>
             <div id="navarea">
                 <?php $this->load->view("$folder_themes/partials/menu_head.php"); ?>
             </div>
+            <?php $this->load->view("$folder_themes/partials/header-background.php"); ?>
         </header>
 
         <div class="row main-content">
@@ -39,6 +40,7 @@
         </div>
     </div>
     <footer id="footer">
+        <?php $this->load->view("$folder_themes/partials/header-background.php"); ?>
         <?php $this->load->view("$folder_themes/partials/footer_top.php"); ?>
         <?php $this->load->view("$folder_themes/partials/footer_bottom.php"); ?>
     </footer>

@@ -2,6 +2,8 @@
 @import "./z_old.css";
 @import "./beranda.css";
 @import "./sidebar.css";
+@import "./footer.css";
+@import "./artikel.css";
 
 :root {
   --main-color: #e64946;

@@ -13,23 +13,24 @@
 </div>
 -->
 	<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
-	<div class="container" style="background-color: #f6f6f6;">
+	<div class="container">
 		<header id="header">
 			<?php $this->load->view("$folder_themes/partials/header.php"); ?>
 			<div id="navarea">
 				<?php $this->load->view("$folder_themes/partials/menu_head.php"); ?>
 			</div>
+			<?php $this->load->view("$folder_themes/partials/header-background.php"); ?>
 		</header>
-		<div class="row">
+		<div class="row main-content">
 			<section>
 				<div class="content_middle"></div>
 				<div class="content_bottom">
-					<div class="col-lg-9 col-md-9">
+					<div class="col-lg-8 col-md-8">
 						<div class="content_bottom_left">
 							<?php $this->load->view("$folder_themes/partials/artikel.php"); ?>
 						</div>
 					</div>
-					<div class="col-lg-3 col-md-3">
+					<div class="col-lg-4 col-md-4">
 						<?php $this->load->view("$folder_themes/partials/bottom_content_right.php"); ?>
 					</div>
 				</div>
