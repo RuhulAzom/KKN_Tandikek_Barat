@@ -3,15 +3,15 @@
 <div class="row">
 	<?php if (!empty($teks_berjalan)): ?>
 		<div class="" style="color:#fff; padding-top: .3rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1);position: relative; display:flex; align-items:center; padding:.5rem 0">
-			<div class="" style="display: flex; align-items: center; gap: 1rem; bottom: 0; padding: 0 1rem; z-index: 2;">
-				<span style="display: flex; align-items: center; gap: .2rem;border:1px solid rgba(255, 255, 255, 0.1);padding: .3rem 1rem;border-radius: 1.5rem;backdrop-filter: 24px;background-color: rgba(255, 255, 255, 0.1);color: rgba(255, 255, 255, 0.8);">
+			<div class="meta">
+				<span>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="" style="width: 1rem;">
 						<rect width="20" height="16" x="2" y="4" rx="2"></rect>
 						<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
 					</svg>
 					info@tandikek.go.id
 				</span>
-				<span style="display: flex; align-items: center; gap: .2rem;border:1px solid rgba(255, 255, 255, 0.1);padding: .3rem 1rem;border-radius: 1.5rem;backdrop-filter: 24px;background-color: rgba(255, 255, 255, 0.1);color: rgba(255, 255, 255, 0.8);">
+				<span>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1rem;">
 						<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
 					</svg>
@@ -52,7 +52,7 @@
 					<table align="center">
 						<tr>
 							<td><input type="text" name="cari" maxlength="50" class="form-control" value="<?= $cari ?>" placeholder="Cari Artikel"></td>
-							<td><button type="submit" class="btn btn-primary">Cari</button></td>
+							<td><button type="submit" class="btn btn-primary search">Cari</button></td>
 						</tr>
 					</table>
 				</form>

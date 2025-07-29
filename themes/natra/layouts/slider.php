@@ -117,6 +117,10 @@
 		z-index: 10;
 	}
 
+	#slider .slick_slider {
+		max-height: 350px;
+	}
+
 	@media (max-width: 768px) {
 		#slider .slick_slider .content .imgBorder {
 			display: none;
@@ -125,6 +129,18 @@
 		#slider .slick_slider .content {
 			grid-template-columns: repeat(1, minmax(0, 1fr));
 			padding-left: 3rem;
+		}
+
+		#slider .slick_slider {
+			max-height: 400px;
+		}
+
+		#slider .slick_slider .tlClogo-Container {
+			min-height: 1000px;
+		}
+
+		#slider .slick_slider .content h3 {
+			font-size: 16px;
 		}
 	}
 
@@ -168,7 +184,6 @@
 		color: #fff;
 		margin: 0 0 10px 0;
 		line-height: 1.3;
-		max-height: 3em;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
@@ -268,7 +283,10 @@
 									<span class="btn-primary"><?= $gambar['kategori'] ?></span>
 									<span style="border: 1px solid rgba(239, 68, 68, 0.2); background: rgba(127, 29, 29, 0.3); color: rgba(255, 255, 255, 0.6); padding: 0.25rem 0.75rem; border-radius: 0.5rem; font-size: 0.75rem;font-weight: 500;border-radius: 2rem;"><?= date('d F Y', strtotime($gambar['tgl_upload'])) ?></span>
 								</div>
-								<h3><?= $gambar['judul'] ?></h3>
+								<h3>
+									<?= strlen($gambar['judul']) > 30 ? substr($gambar['judul'], 0, 60) . '...' : $gambar['judul'] ?>
+								</h3>
+
 								<div class="artikel-desc"><?= potong_teks($gambar["isi"], 180) ?>...</div>
 							</div>
 							<div class="footer">
